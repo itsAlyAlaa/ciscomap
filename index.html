@@ -426,7 +426,7 @@
     margin:14px 0 18px;
   }
   footer .about-name{
-    font-size:70px;
+    font-size:38px;
     font-weight:800;
     margin:0 0 10px;
     background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent));
@@ -437,7 +437,7 @@
     animation: shineSlow 12s linear infinite;
     letter-spacing: 1px;
   }
-  footer .about-me p{ margin:6px 0; line-height:1.7; font-size:15px; }
+  footer .about-me p{ margin:6px 0; line-height:1.7; font-size:35px; }
 
   .social-links {
     display: flex;
@@ -1021,13 +1021,12 @@ function updateLaunchParticles(ctx, sRect) {
   }
 }
 
-// ----- الترتيب الزمني الكامل للإقلاع (Timeline) باستخدام requestAnimationFrame -----
+// ----- الترتيب الزمني الكامل للإقلاع (Timeline) المعدل والأسرع -----
 let startTime = 0;
 let rocketY = 0;
 let rocketTilt = 0;
 let splashY = 0;
 let pageY = 12;
-let flashFired = false;
 
 function translateEaseOut(t) { return --t * t * t + 1; }
 
@@ -1035,9 +1034,9 @@ function launchTimeline(timestamp) {
   if (!startTime) startTime = timestamp;
   const elapsed = timestamp - startTime;
 
-  // المرحلة 1: الصاروخ يظهر من أسفل الشاشة مع اهتزاز خفيف لتسخين المحرك (0 - 1400ms)
-  if (elapsed < 1400) {
-    const progress = elapsed / 1400;
+  // المرحلة 1: اهتزاز سريع جداً لتسخين المحرك (تم تقليصها من 1400ms إلى 600ms)
+  if (elapsed < 600) {
+    const progress = elapsed / 600;
     rocketY = -250 * translateEaseOut(progress);
     rocketTilt = 0;
     engineThrust = progress * 1.3;
@@ -1049,24 +1048,21 @@ function launchTimeline(timestamp) {
     splash.style.transform = `translate3d(${shakeX * 0.5}px, ${shakeY * 0.5}px, 0)`;
   }
 
-  // المرحلة 2: لحظة الانطلاق الفعلي — وميض أبيض خاطف وميل الصاروخ (1400 - 1600ms)
-  else if (elapsed >= 1400 && elapsed < 1600) {
-    if (!flashFired) { flashFired = true; }
-    const fadeT = (elapsed - 1400) / 200;
-    flashOverlay.style.opacity = String(0.85 * (1 - fadeT));
-
+  // المرحلة 2: لحظة الانطلاق الفعلي وميل الصاروخ - (تم حذف الفلاش الأبيض هنا) (600 - 800ms)
+  else if (elapsed >= 600 && elapsed < 800) {
+    const fadeT = (elapsed - 600) / 200;
+    
     engineThrust = 3;
     rocketContainer.classList.add('motion-blur');
     rocketTilt = -10 * fadeT;
     rocketContainer.style.transform = `translate3d(-50%, ${rocketY}px, 0) rotate(${rocketTilt}deg)`;
   }
 
-  // المرحلة 3: الصعود السريع حاملاً شاشة الـ Splash بالكامل للأعلى (1600 - 2300ms)
-  else if (elapsed >= 1600 && elapsed < 2300) {
-    flashOverlay.style.opacity = '0';
+  // المرحلة 3: الصعود الصاروخي السريع جداً للأعلى (800 - 1300ms)
+  else if (elapsed >= 800 && elapsed < 1300) {
     engineThrust = 3;
 
-    const flyProgress = (elapsed - 1600) / 700;
+    const flyProgress = (elapsed - 800) / 500; // تم تسريع السحب إلى 500ms بدلاً من 700ms
     const flyEase = Math.pow(flyProgress, 3);
 
     rocketY = -250 - (sH * 1.3 * flyEase);
@@ -1082,11 +1078,11 @@ function launchTimeline(timestamp) {
     mainPage.style.opacity = String(flyEase);
   }
 
-  // المرحلة 4: إنهاء المشهد وتثبيت الصفحة الرئيسية وبدء الخط الزمني الصوتي
+  // المرحلة 4: إنهاء المشهد وتثبيت الصفحة وتفعيل الصوتيات
   else {
     launchSequenceActive = false;
     splash.style.display = 'none';
-    flashOverlay.style.display = 'none';
+    flashOverlay.style.display = 'none'; // إخفاء نهائي احتياطي
     rocketContainer.classList.remove('motion-blur');
 
     mainPage.style.transform = 'translate3d(0, 0, 0)';
@@ -1096,7 +1092,7 @@ function launchTimeline(timestamp) {
     audioQuran.addEventListener('ended', () => {
       setTimeout(() => {
         audioMusic.play().catch(e => console.log('Music audio blocked:', e));
-      }, 20000);
+      }, 10000); // تعديل الـ 10 ثواني السابق
     });
     return;
   }
@@ -1108,7 +1104,7 @@ startBtn.addEventListener('click', () => {
   audioLaunch.play().catch(e => console.log('Launch audio blocked:', e));
 
   splashContent.style.opacity = '0';
-  setTimeout(() => { splashContent.style.display = 'none'; }, 300);
+  setTimeout(() => { splashContent.style.display = 'none'; }, 200); // تسريع إخفاء النصوص أيضاً
 
   rocketContainer.style.display = 'flex';
   launchSequenceActive = true;
