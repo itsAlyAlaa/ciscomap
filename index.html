@@ -1051,7 +1051,7 @@ function launchTimeline(timestamp) {
 
   // المرحلة 2: لحظة الانطلاق الفعلي — وميض أبيض خاطف وميل الصاروخ (1400 - 1600ms)
   else if (elapsed >= 1400 && elapsed < 1600) {
-    if (!flashFired) { flashFired = true; }
+    if (!flashFired) { flashFired = false; }
     const fadeT = (elapsed - 1400) / 200;
     flashOverlay.style.opacity = String(0.85 * (1 - fadeT));
 
