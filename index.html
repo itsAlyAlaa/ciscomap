@@ -460,6 +460,120 @@
 </head>
 <body>
 
+<!-- ===== Splash Screen ===== -->
+<div id="splash">
+  <canvas id="splashCanvas"></canvas>
+  <div id="splashContent">
+    <div id="splashLogo">
+      <svg width="48" height="34" viewBox="0 0 20 14" fill="none">
+        <rect x="0" y="6" width="2" height="6" fill="#00d4ff"/>
+        <rect x="3.5" y="3" width="2" height="9" fill="#00d4ff"/>
+        <rect x="7" y="0" width="2" height="12" fill="#00d4ff"/>
+        <rect x="10.5" y="0" width="2" height="12" fill="#00d4ff"/>
+        <rect x="14" y="3" width="2" height="9" fill="#00d4ff"/>
+        <rect x="17.5" y="6" width="2" height="6" fill="#00d4ff"/>
+      </svg>
+    </div>
+    <h1 id="splashTitle">Cisco Courses Map</h1>
+    <p id="splashSub">خريطة الكورسات المجانية المعتمدة</p>
+    <button id="startBtn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+      Start
+    </button>
+  </div>
+</div>
+
+<style>
+  #splash {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: #05080f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    transition: opacity .8s ease, visibility .8s ease;
+  }
+  #splash.hide {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+  #splashCanvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+  #splashContent {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+  #splashLogo {
+    animation: splashLogoIn 1s cubic-bezier(.22,1,.36,1) both;
+    filter: drop-shadow(0 0 20px rgba(0,212,255,.6));
+  }
+  @keyframes splashLogoIn {
+    from { opacity:0; transform: scale(0.4) translateY(20px); }
+    to   { opacity:1; transform: scale(1) translateY(0); }
+  }
+  #splashTitle {
+    font-family: 'Thmanyah','Cairo',sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    margin: 0;
+    background: linear-gradient(90deg, #00d4ff, #ff8c42, #00d4ff);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: splashTitleIn .9s cubic-bezier(.22,1,.36,1) .2s both, shine 4s linear infinite;
+  }
+  @keyframes splashTitleIn {
+    from { opacity:0; transform: translateY(16px); }
+    to   { opacity:1; transform: translateY(0); }
+  }
+  #splashSub {
+    font-family: 'Thmanyah','Cairo',sans-serif;
+    color: #6a7f99;
+    font-size: 14px;
+    margin: 0;
+    animation: splashTitleIn .9s cubic-bezier(.22,1,.36,1) .4s both;
+  }
+  #startBtn {
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(90deg, #00d4ff, #ff8c42);
+    border: none;
+    border-radius: 999px;
+    padding: 14px 36px;
+    font-size: 17px;
+    font-weight: 700;
+    font-family: 'Thmanyah','Cairo',sans-serif;
+    color: #04101a;
+    cursor: pointer;
+    animation: splashTitleIn .9s cubic-bezier(.22,1,.36,1) .6s both, pulseShadow 2s ease-in-out 1.5s infinite;
+    transition: transform .15s ease, filter .15s ease;
+  }
+  #startBtn:hover {
+    transform: scale(1.06);
+    filter: brightness(1.1);
+  }
+  #startBtn:active { transform: scale(0.97); }
+  @keyframes pulseShadow {
+    0%,100% { box-shadow: 0 0 0px rgba(0,212,255,0); }
+    50%     { box-shadow: 0 0 22px rgba(0,212,255,0.45); }
+  }
+</style>
+
 <canvas id="netBg"></canvas>
 <div class="grid-overlay"></div>
 
@@ -735,19 +849,48 @@ document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeOverlay();
   }
   tick();
 })();
-</script>
-  
- <audio id="bgMusic" loop>
-  <source src="Music.mp3" type="audio/mpeg">
-</audio>
-<script>
-  const music = document.getElementById('bgMusic');
-  music.volume = 1;
-  document.addEventListener('mousemove', function startMusic() {
-    music.play();
-    document.removeEventListener('mousemove', startMusic);
-  }, { once: true });
-  
+
+// ===== Splash Screen + Music =====
+const splash = document.getElementById('splash');
+const startBtn = document.getElementById('startBtn');
+const bgMusic = document.createElement('audio');
+bgMusic.loop = true;
+bgMusic.volume = 1;
+bgMusic.src = 'Music.mp3';
+
+startBtn.addEventListener('click', () => {
+  bgMusic.play();
+  splash.classList.add('hide');
+  setTimeout(() => splash.remove(), 900);
+});
+
+// Splash canvas network animation
+(function(){
+  const canvas = document.getElementById('splashCanvas');
+  const ctx = canvas.getContext('2d');
+  let w, h, dots;
+  function resize(){
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+    dots = Array.from({length: 50}, ()=>({
+      x: Math.random()*w, y: Math.random()*h,
+      vx: (Math.random()-.5)*.4, vy: (Math.random()-.5)*.4
+    }));
+  }
+  window.addEventListener('resize', resize);
+  resize();
+  function tick(){
+    ctx.clearRect(0,0,w,h);
+    for(const d of dots){ d.x+=d.vx; d.y+=d.vy; if(d.x<0||d.x>w)d.vx*=-1; if(d.y<0||d.y>h)d.vy*=-1; }
+    for(let i=0;i<dots.length;i++) for(let j=i+1;j<dots.length;j++){
+      const dx=dots[i].x-dots[j].x, dy=dots[i].y-dots[j].y, dist=Math.sqrt(dx*dx+dy*dy);
+      if(dist<130){ ctx.strokeStyle=`rgba(0,212,255,${0.18*(1-dist/130)})`; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(dots[i].x,dots[i].y); ctx.lineTo(dots[j].x,dots[j].y); ctx.stroke(); }
+    }
+    for(const d of dots){ ctx.beginPath(); ctx.arc(d.x,d.y,2,0,Math.PI*2); ctx.fillStyle='rgba(255,140,66,0.5)'; ctx.fill(); }
+    requestAnimationFrame(tick);
+  }
+  tick();
+})();
 </script>
 </body>
 </html>
