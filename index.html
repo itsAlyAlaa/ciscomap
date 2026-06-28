@@ -736,5 +736,18 @@ document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeOverlay();
   tick();
 })();
 </script>
+  
+  <audio id="bgMusic" loop>
+  <source src="Ali Sabah - Ghaith (Royalty Free Music).mp3" type="audio/mpeg">
+</audio>
+<script>
+  const music = document.getElementById('bgMusic');
+  music.volume = 0.3;
+  document.addEventListener('click', function startMusic() {
+    music.play();
+    document.removeEventListener('click', startMusic);
+  }, { once: true });
+</script>
+
 </body>
 </html>
