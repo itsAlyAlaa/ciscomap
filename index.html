@@ -1072,31 +1072,28 @@ function launchTimeline(timestamp) {
 
     rocketContainer.style.transform = `translate3d(-50%, ${rocketY}px, 0) rotate(${rocketTilt}deg)`;
     splash.style.transform = `translate3d(0, ${splashY}px, 0)`;
-    splash.style.opacity = String(1 - flyEase);
+    splash.style.opacity = String(flyEase);
 
     mainPage.style.transform = `translate3d(0, ${pageY}vh, 0)`;
     mainPage.style.opacity = String(flyEase);
   }
 
-  // المرحلة 4: إنهاء المشهد وتثبيت الصفحة وتفعيل الصوتيات
-  else {
-    launchSequenceActive = false;
-    splash.style.display = 'none';
-    flashOverlay.style.display = 'none'; // إخفاء نهائي احتياطي
-    rocketContainer.classList.remove('motion-blur');
+// التعديل الجديد يبدأ من هنا 👇
+    // تشغيل صوت القرآن بعد انتهاء صوت الصاروخ تماماً (7 ثوانٍ)
+    audioLaunch.addEventListener('ended', () => {
+      audioQuran.play().catch(e => console.log('Quran audio blocked:', e));
+    });
 
-    mainPage.style.transform = 'translate3d(0, 0, 0)';
-    mainPage.style.opacity = '1';
-
-    audioQuran.play().catch(e => console.log('Quran audio blocked:', e));
+    // تشغيل الموسيقى بعد انتهاء القرآن بـ 10 ثوانٍ
     audioQuran.addEventListener('ended', () => {
       setTimeout(() => {
         audioMusic.play().catch(e => console.log('Music audio blocked:', e));
-      }, 10000); // تعديل الـ 10 ثواني السابق
+      }, 10000); // 10 ثوانٍ
     });
+    // التعديل الجديد ينتهي هنا 👆
+
     return;
   }
-
   requestAnimationFrame(launchTimeline);
 }
 
