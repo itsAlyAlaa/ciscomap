@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="خريطة كورسات Cisco المجانية - كورسات شبكات وسايبر سيكيورتي وبرمجة وذكاء اصطناعي معتمدة من Cisco NetAcad">
+<meta name="theme-color" content="#00d4ff">
+<title>Cisco Courses</title>
+<link rel="icon" type="image/png" href="data:image/png;base64,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">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* خط ثمانية - حمّل ملفات الخط من font.thmanyah.com وارفعها في فولدر fonts/ بنفس الأسماء دي */
+  @font-face{
+    font-family:'Thmanyah';
+    src: url('fonts/ThmanyahSans-Regular.woff2') format('woff2');
+    font-weight:400;
+    font-display:swap;
+  }
+  @font-face{
+    font-family:'Thmanyah';
+    src: url('fonts/ThmanyahSans-Medium.woff2') format('woff2');
+    font-weight:500;
+    font-display:swap;
+  }
+  @font-face{
+    font-family:'Thmanyah';
+    src: url('fonts/ThmanyahSans-Bold.woff2') format('woff2');
+    font-weight:700;
+    font-display:swap;
+  }
+</style>
+<style>
+  :root{
+    --bg: #05080f;
+    --bg2: #080d18;
+    --line: #152035;
+    --accent: #00d4ff;
+    --accent2: #ff8c42;
+    --text: #e8f0f8;
+    --muted: #6a7f99;
+    --card: #0a1525a0;
+    --good: #00e5a0;
+    --mid: #ffcc44;
+    --hard: #ff5f6d;
+    --glow: rgba(0,212,255,.32);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Thmanyah', 'Cairo', 'Segoe UI', Tahoma, Arial, sans-serif;
+    background:
+      radial-gradient(ellipse 900px 600px at 15% -5%, rgba(0,212,255,.08), transparent 60%),
+      radial-gradient(ellipse 800px 700px at 100% 10%, rgba(255,140,66,.08), transparent 55%),
+      var(--bg);
+    color:var(--text);
+    min-height:100vh;
+    overflow-x:hidden;
+    position:relative;
+  }
+  #netBg{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    z-index:0;
+    opacity:.8;
+  }
+  .grid-overlay{
+    position:fixed;
+    inset:0;
+    z-index:0;
+    background-image:
+      linear-gradient(rgba(0,212,255,.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,212,255,.04) 1px, transparent 1px);
+    background-size: 42px 42px;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 20%, black 0%, transparent 75%);
+  }
+  .page{
+    position:relative;
+    z-index:1;
+  }
+  .badges{
+    display:flex;
+    justify-content:center;
+    gap:14px;
+    flex-wrap:wrap;
+    padding:22px 16px 0;
+  }
+  .badge{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    background:#0e1726;
+    border:1px solid var(--line);
+    border-radius:999px;
+    padding:9px 18px;
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:.3px;
+    color:var(--text);
+    opacity:0;
+    transform:translateY(-10px);
+    animation: badgeIn .6s ease forwards;
+  }
+  .badge:nth-child(1){ animation-delay:.05s; }
+  .badge:nth-child(2){ animation-delay:.18s; }
+  .badge:nth-child(3){ animation-delay:.31s; }
+  @keyframes badgeIn{ to{ opacity:1; transform:translateY(0); } }
+  .badge svg{ display:block; }
+  @media (prefers-reduced-motion: reduce){
+    .badge{ animation:none; opacity:1; transform:none; }
+  }
+  .topbar{
+    text-align:center;
+    padding:36px 20px 18px;
+  }
+  .topbar h1{
+    font-size:30px;
+    margin:0 0 8px;
+    letter-spacing:.5px;
+  }
+  .topbar h1 span{
+    background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent));
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shine 5s linear infinite;
+  }
+  @keyframes shine{
+    0%{ background-position: 0% center; }
+    100%{ background-position: 200% center; }
+  }
+  @keyframes shineSlow{
+    0%{ background-position: 0% center; }
+    100%{ background-position: 300% center; }
+  }
+
+  /* ===== Badge Pro Animations ===== */
+  .badge {
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* --- Cisco: الأعمدة بتصعد وتنزل زي إشارة شبكة حقيقية --- */
+  .badge.cisco svg rect:nth-child(1){ animation: ciscoBar 1.8s ease-in-out infinite; animation-delay:0s; }
+  .badge.cisco svg rect:nth-child(2){ animation: ciscoBar 1.8s ease-in-out infinite; animation-delay:0.15s; }
+  .badge.cisco svg rect:nth-child(3){ animation: ciscoBar 1.8s ease-in-out infinite; animation-delay:0.3s; }
+  .badge.cisco svg rect:nth-child(4){ animation: ciscoBar 1.8s ease-in-out infinite; animation-delay:0.45s; }
+  .badge.cisco svg rect:nth-child(5){ animation: ciscoBar 1.8s ease-in-out infinite; animation-delay:0.3s; }
+  .badge.cisco svg rect:nth-child(6){ animation: ciscoBar 1.8s ease-in-out infinite; animation-delay:0.15s; }
+  @keyframes ciscoBar {
+    0%,100% { opacity: 1; transform: scaleY(1);   transform-origin: bottom; }
+    30%     { opacity: 0.3; transform: scaleY(0.3); transform-origin: bottom; }
+    60%     { opacity: 1; transform: scaleY(1.1);  transform-origin: bottom; }
+  }
+
+  /* --- Python: النصفين يدوران حول بعض بلطف --- */
+  .badge.python svg path:nth-child(1){
+    animation: pythonTop 4s ease-in-out infinite;
+    transform-origin: 8px 8px;
+  }
+  .badge.python svg path:nth-child(2){
+    animation: pythonBot 4s ease-in-out infinite;
+    transform-origin: 8px 8px;
+  }
+  @keyframes pythonTop {
+    0%,100% { transform: rotate(0deg) translateY(0px); }
+    25%     { transform: rotate(-8deg) translateY(-1px); }
+    75%     { transform: rotate(5deg) translateY(0.5px); }
+  }
+  @keyframes pythonBot {
+    0%,100% { transform: rotate(0deg) translateY(0px); }
+    25%     { transform: rotate(8deg) translateY(1px); }
+    75%     { transform: rotate(-5deg) translateY(-0.5px); }
+  }
+
+  /* --- IBM: الأسطر بتظهر وتختفي واحدة ورا التانية زي scan --- */
+  .badge.ibm svg g rect:nth-child(1),
+  .badge.ibm svg g rect:nth-child(2),
+  .badge.ibm svg g rect:nth-child(3)  { animation: ibmScan 2.4s ease-in-out infinite; animation-delay: 0s; }
+  .badge.ibm svg g rect:nth-child(4),
+  .badge.ibm svg g rect:nth-child(5),
+  .badge.ibm svg g rect:nth-child(6)  { animation: ibmScan 2.4s ease-in-out infinite; animation-delay: 0.3s; }
+  .badge.ibm svg g rect:nth-child(7),
+  .badge.ibm svg g rect:nth-child(8),
+  .badge.ibm svg g rect:nth-child(9)  { animation: ibmScan 2.4s ease-in-out infinite; animation-delay: 0.6s; }
+  .badge.ibm svg g rect:nth-child(10),
+  .badge.ibm svg g rect:nth-child(11),
+  .badge.ibm svg g rect:nth-child(12) { animation: ibmScan 2.4s ease-in-out infinite; animation-delay: 0.9s; }
+  .badge.ibm svg g rect:nth-child(13),
+  .badge.ibm svg g rect:nth-child(14),
+  .badge.ibm svg g rect:nth-child(15) { animation: ibmScan 2.4s ease-in-out infinite; animation-delay: 1.2s; }
+  @keyframes ibmScan {
+    0%,100% { opacity: 1;   fill: #0f62fe; }
+    40%     { opacity: 0.2; fill: #4d9fff; }
+    70%     { opacity: 1;   fill: #0f62fe; }
+  }
+
+  .badge.cisco { border-color: rgba(0,188,235,0.4); animation: badgeIn .6s ease forwards, borderPulseCisco 3s ease-in-out infinite; }
+  .badge.python { border-color: rgba(69,132,182,0.4); animation: badgeIn .6s ease forwards, borderPulsePython 3s ease-in-out infinite; animation-delay: .18s, 1s; }
+  .badge.ibm    { border-color: rgba(15,98,254,0.4);  animation: badgeIn .6s ease forwards, borderPulseIBM 3s ease-in-out infinite; animation-delay: .31s, 2s; }
+
+  @keyframes borderPulseCisco {
+    0%,100% { border-color: rgba(0,188,235,0.3); box-shadow: 0 0 0px rgba(0,188,235,0); }
+    50%     { border-color: rgba(0,188,235,0.9); box-shadow: 0 0 10px rgba(0,188,235,0.3); }
+  }
+  @keyframes borderPulsePython {
+    0%,100% { border-color: rgba(69,132,182,0.3); box-shadow: 0 0 0px rgba(69,132,182,0); }
+    50%     { border-color: rgba(255,222,87,0.8); box-shadow: 0 0 10px rgba(255,222,87,0.25); }
+  }
+  @keyframes borderPulseIBM {
+    0%,100% { border-color: rgba(15,98,254,0.3); box-shadow: 0 0 0px rgba(15,98,254,0); }
+    50%     { border-color: rgba(15,98,254,0.9); box-shadow: 0 0 10px rgba(15,98,254,0.35); }
+  }
+  .topbar p{ color:var(--muted); margin:0; font-size:14px; }
+
+  .map-wrap{
+    position:relative;
+    max-width:1100px;
+    margin:30px auto 60px;
+    padding:0 20px;
+  }
+  svg.lines{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+  }
+  .nodes{
+    position:relative;
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:34px 24px;
+    z-index:2;
+  }
+  @media (max-width: 760px){
+    .nodes{ grid-template-columns:repeat(2,1fr); gap:24px 14px; }
+  }
+  @media (max-width: 480px){
+    .nodes{ grid-template-columns:1fr; }
+  }
+
+  .node{
+    background: linear-gradient(145deg, #0e1e32, #08111f);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:22px 16px;
+    text-align:center;
+    cursor:pointer;
+    position:relative;
+    transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+    opacity:0;
+    transform:translateY(18px);
+    animation: nodeIn .6s ease forwards;
+    
+    /* التعديل هنا: استخدام Flexbox لترتيب العناصر عمودياً وتوسيطها */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  @keyframes nodeIn{ to{ opacity:1; transform:translateY(0); } }
+  .node::after{
+    content:"";
+    position:absolute; inset:-1px;
+    border-radius:18px;
+    border:1px solid var(--accent);
+    opacity:0;
+    box-shadow: 0 0 0 0 var(--glow);
+    animation: pulseRing 3.2s ease-in-out infinite;
+    pointer-events:none;
+  }
+  .node:nth-child(2)::after{ animation-delay:.5s; }
+  .node:nth-child(3)::after{ animation-delay:1s; }
+  .node:nth-child(4)::after{ animation-delay:1.5s; }
+  .node:nth-child(5)::after{ animation-delay:2s; }
+  .node:nth-child(6)::after{ animation-delay:2.5s; }
+  
+
+  @keyframes pulseRing{
+    0%{ opacity:.5; box-shadow:0 0 0 0 var(--glow); }
+    70%{ opacity:0; box-shadow:0 0 0 14px rgba(79,209,197,0); }
+    100%{ opacity:0; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .node{ animation:none; opacity:1; transform:none; }
+    .node::after{ animation:none; display:none; }
+  }
+  .node::before{
+    content:"";
+    position:absolute; inset:0;
+    border-radius:18px;
+    background: radial-gradient(circle at 50% 0%, rgba(0,212,255,.10), transparent 70%);
+    opacity:0;
+    transition:opacity .25s ease;
+  }
+  .node:hover{
+    transform: translateY(-6px);
+    border-color: var(--accent);
+    box-shadow: 0 12px 30px -10px rgba(0,212,255,.28);
+  }
+  .node:hover::before{ opacity:1; }
+  .node .icon{
+    font-size:34px;
+    display:block;
+    margin-bottom:10px;
+    filter: drop-shadow(0 0 8px rgba(0,212,255,.32));
+  }
+  .node .name{
+    font-size:15px;
+    font-weight:600;
+    line-height:1.4;
+  }
+  .node .count{
+    margin-top:12px; /* تم زيادة المسافة العلوية قليلاً لتبدو أكثر تناسقاً */
+    font-size:12px;
+    color:var(--accent);
+    background:rgba(0,212,255,.08);
+    border:1px solid rgba(0,212,255,.22);
+    display:inline-block;
+    padding:3px 10px;
+    border-radius:999px;
+    width: fit-content; /* لضمان عدم تمدد خلفية العداد بشكل كامل واحترام الحواف المستديرة */
+  }
+
+  /* overlay */
+  .overlay{
+    position:fixed; inset:0;
+    background:rgba(4,8,14,.78);
+    backdrop-filter: blur(3px);
+    display:none;
+    align-items:flex-start;
+    justify-content:center;
+    z-index:50;
+    padding:40px 16px;
+    overflow-y:auto;
+  }
+  .overlay.active{ display:flex; }
+  .panel{
+    background: linear-gradient(160deg, #0d1e33, #07101f);
+    border:1px solid var(--line);
+    border-radius:20px;
+    max-width:640px;
+    width:100%;
+    padding:26px 22px 30px;
+    position:relative;
+    animation: pop .25s ease;
+  }
+  @keyframes pop{ from{ transform:scale(.95); opacity:0; } to{ transform:scale(1); opacity:1; } }
+  .panel .close{
+    position:absolute; top:14px; left:14px;
+    background:none; border:none; color:var(--muted);
+    font-size:20px; cursor:pointer; line-height:1;
+  }
+  .panel .close:hover{ color:var(--text); }
+  .panel h2{
+    margin:0 0 4px;
+    font-size:20px;
+    display:flex; align-items:center; gap:10px; justify-content:center;
+  }
+  .panel .sub{
+    text-align:center; color:var(--muted); font-size:13px; margin-bottom:20px;
+  }
+  .course-list{
+    display:flex; flex-direction:column; gap:10px;
+  }
+  .course-item{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:14px 16px;
+    cursor:pointer;
+    display:flex; justify-content:space-between; align-items:center; gap:10px;
+    transition: border-color .2s, background .2s;
+  }
+  .course-item:hover{ border-color:var(--accent); background:#16283d; }
+  .course-item .cname{ font-size:14px; font-weight:600; }
+  .level-badge{
+    font-size:11px; padding:3px 9px; border-radius:999px; white-space:nowrap;
+    border:1px solid currentColor;
+  }
+  .level-مبتدئ, .level-مبتدئ\ \(Basics\){ color:var(--good); }
+  .level-متوسط, .level-متوسط\ \(B1\){ color:var(--mid); }
+  .level-متقدم, .level-متقدم\ \(B2\){ color:var(--hard); }
+
+  .detail{ display:none; }
+  .detail.active{ display:block; }
+  .detail .back{
+    background:none; border:1px solid var(--line); color:var(--muted);
+    border-radius:8px; padding:6px 12px; font-size:12px; cursor:pointer; margin-bottom:16px;
+  }
+  .detail .back:hover{ color:var(--text); border-color:var(--accent); }
+  .detail h3{ margin:0 0 6px; font-size:18px; }
+  .detail .level-badge{ display:inline-block; margin-bottom:14px; }
+  .detail .role-label{
+    font-size:12px; color:var(--accent); letter-spacing:.5px; margin-bottom:6px; font-weight:600;
+  }
+  .detail .desc{
+    color:#cdd9e5; font-size:14px; line-height:1.8; margin-bottom:22px;
+    background:rgba(255,255,255,.03); padding:14px; border-radius:10px; border:1px solid var(--line);
+  }
+  .enroll-btn{
+    display:flex; align-items:center; justify-content:center; gap:8px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    color:#04101a; font-weight:700; text-decoration:none;
+    padding:13px 18px; border-radius:12px; font-size:15px;
+    transition: filter .2s, transform .2s;
+  }
+  .enroll-btn:hover{ filter:brightness(1.1); transform:translateY(-2px); }
+
+  footer{
+    text-align:center; color:var(--muted); font-size:15px; padding:30px 16px 36px; opacity:.9;
+    max-width:650px; margin:0 auto;
+  }
+  footer .about-me{
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    padding:24px 0;
+    margin:14px 0 18px;
+  }
+  footer .about-name{
+    font-size:38px;
+    font-weight:800;
+    margin:0 0 10px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent));
+    background-size: 300% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shineSlow 12s linear infinite;
+    letter-spacing: 1px;
+  }
+  footer .about-me p{ margin:6px 0; line-height:1.7; font-size:15px; }
+
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    margin-top: 16px;
+  }
+  .social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform .2s ease, opacity .2s ease;
+    opacity: .85;
+    border-radius: 8px;
+  }
+  .social-icon:hover { transform: translateY(-4px); opacity: 1; }
+
+  .hadith {
+    font-size:15px; color:var(--accent); line-height:2; font-style:italic;
+    opacity:.95;
+  }
+</style>
+</head>
+<body>
+
+<canvas id="netBg"></canvas>
+<div class="grid-overlay"></div>
+
+<div class="page">
+
+<div class="badges">
+  <span class="badge cisco">
+    <svg width="20" height="14" viewBox="0 0 20 14" fill="none">
+      <rect x="0" y="6" width="2" height="6" fill="#00bceb"/>
+      <rect x="3.5" y="3" width="2" height="9" fill="#00bceb"/>
+      <rect x="7" y="0" width="2" height="12" fill="#00bceb"/>
+      <rect x="10.5" y="0" width="2" height="12" fill="#00bceb"/>
+      <rect x="14" y="3" width="2" height="9" fill="#00bceb"/>
+      <rect x="17.5" y="6" width="2" height="6" fill="#00bceb"/>
+    </svg>
+    Cisco
+  </span>
+  <span class="badge python">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+      <path d="M8 0C5.8 0 5.8 1 5.8 1.5V3.5H8.2V4H3.5C2 4 1 5 1 7.5C1 10 2 10.8 3.5 10.8H4.8V8.8C4.8 7.3 6 6.3 7.5 6.3H10.2C11.5 6.3 12.5 5.3 12.5 4V1.5C12.5 1 12.2 0 8 0Z" fill="#4584b6"/>
+      <path d="M8 16C10.2 16 10.2 15 10.2 14.5V12.5H7.8V12H12.5C14 12 15 11 15 8.5C15 6 14 5.2 12.5 5.2H11.2V7.2C11.2 8.7 10 9.7 8.5 9.7H5.8C4.5 9.7 3.5 10.7 3.5 12V14.5C3.5 15 3.8 16 8 16Z" fill="#ffde57"/>
+    </svg>
+    Python
+  </span>
+  <span class="badge ibm">
+    <svg width="34" height="14" viewBox="0 0 34 14" fill="none">
+      <g fill="#0f62fe">
+        <rect y="0" width="9" height="1.6"/><rect x="12" y="0" width="9" height="1.6"/><rect x="24" y="0" width="9" height="1.6"/>
+        <rect y="3" width="9" height="1.6"/><rect x="12" y="3" width="9" height="1.6"/><rect x="24" y="3" width="9" height="1.6"/>
+        <rect y="6" width="9" height="1.6"/><rect x="12" y="6" width="9" height="1.6"/><rect x="24" y="6" width="9" height="1.6"/>
+        <rect y="9" width="9" height="1.6"/><rect x="12" y="9" width="9" height="1.6"/><rect x="24" y="9" width="9" height="1.6"/>
+        <rect y="12" width="9" height="1.6"/><rect x="12" y="12" width="9" height="1.6"/><rect x="24" y="12" width="9" height="1.6"/>
+      </g>
+    </svg>
+    IBM
+  </span>
+</div>
+
+<div class="topbar">
+  <h1><span>Cisco Networking Academy</span> Free Courses</h1>
+  <p>دوس على أي مجال عشان تشوف كل الكورسات الخاصة بهذا المجال</p>
+</div>
+
+<div class="map-wrap">
+  <div class="nodes" id="nodes"></div>
+</div>
+
+<footer>
+  <p style="margin:0 0 14px; font-size:17px; font-weight:600; color:var(--text);">كل الكورسات مجانية بالكامل ومعتمدة من Cisco عبر منصة NetAcad</p>
+  <div class="hadith">
+    «وَاللَّهُ فِي عَوْنِ الْعَبْدِ مَا كَانَ الْعَبْدُ فِي عَوْنِ أَخِيهِ» — حديث شريف
+    <br>لا تنسونا من صالح دعواتكم
+  </div>
+  <div class="about-me">
+    <p class="about-name">Aly Alaa</p>
+    <p>IT Support & Help Desk Specialist | Cisco Networking Academy Certified</p>
+    <div class="social-links">
+      <a href="https://www.linkedin.com/in/itsalyalaa/" target="_blank" rel="noopener" aria-label="LinkedIn" class="social-icon">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="24" height="24" rx="5" fill="#0A66C2"/>
+          <path d="M7.5 9.5H5V19H7.5V9.5Z" fill="white"/>
+          <circle cx="6.25" cy="6.75" r="1.5" fill="white"/>
+          <path d="M19 19H16.5V14C16.5 12.9 15.9 12 14.75 12C13.6 12 13 12.9 13 14V19H10.5V9.5H13V10.8C13.6 9.9 14.7 9.2 16 9.2C17.9 9.2 19 10.5 19 13V19Z" fill="white"/>
+        </svg>
+      </a>
+      <a href="https://www.instagram.com/itsalyalaa/" target="_blank" rel="noopener" aria-label="Instagram" class="social-icon">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="ig-grad" cx="30%" cy="107%" r="130%">
+              <stop offset="0%" stop-color="#fdf497"/>
+              <stop offset="10%" stop-color="#fdf497"/>
+              <stop offset="50%" stop-color="#fd5949"/>
+              <stop offset="68%" stop-color="#d6249f"/>
+              <stop offset="100%" stop-color="#285AEB"/>
+            </radialGradient>
+          </defs>
+          <rect width="24" height="24" rx="6" fill="url(#ig-grad)"/>
+          <rect x="6" y="6" width="12" height="12" rx="4" stroke="white" stroke-width="1.5" fill="none"/>
+          <circle cx="12" cy="12" r="3" stroke="white" stroke-width="1.5" fill="none"/>
+          <circle cx="16.2" cy="7.8" r="0.9" fill="white"/>
+        </svg>
+      </a>
+      <a href="mailto:itsalyalaa@outlook.com" aria-label="Email" class="social-icon">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="24" height="24" rx="5" fill="#0078D4"/>
+          <path d="M4 8C4 7.45 4.45 7 5 7H19C19.55 7 20 7.45 20 8V16C20 16.55 19.55 17 19 17H5C4.45 17 4 16.55 4 16V8Z" fill="white"/>
+          <path d="M4 8L12 13L20 8" stroke="#0078D4" stroke-width="1.5" fill="none"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+</div>
+
+<div class="overlay" id="overlay">
+  <div class="panel">
+    <button class="close" id="closeBtn">✕</button>
+
+    <div id="listView">
+      <h2><span id="catIcon"></span><span id="catName"></span></h2>
+      <div class="sub" id="catCount"></div>
+      <div class="course-list" id="courseList"></div>
+    </div>
+
+    <div id="detailView" class="detail">
+      <button class="back" id="backBtn">→ رجوع لليستة</button>
+      <h3 id="dName"></h3>
+      <span class="level-badge" id="dLevel"></span>
+      <div class="role-label">وصف الكورس</div>
+      <div class="desc" id="dDesc"></div>
+      <a class="enroll-btn" id="dLink" href="#" target="_blank" rel="noopener">🎓 Enroll Now — سجّل في الكورس</a>
+    </div>
+  </div>
+</div>
+
+<script>
+const DATA = {
+  "categories": [
+    {"id":"it_basics","name":"أساسيات الـ IT والدعم الفني","icon":"🖥️","courses":[
+      {"name":"Computer Hardware Basics","level":"مبتدئ","link":"https://www.netacad.com/courses/computer-hardware-basics?courseLang=en-US","desc":"بيعلمك مكونات الكمبيوتر والموبايل وازاي بيشتغلوا وأساسيات الصيانة (Troubleshooting)."},
+      {"name":"Operating Systems Basics","level":"مبتدئ","link":"https://www.netacad.com/courses/operating-systems-basics?courseLang=en-US","desc":"بيفهمك أساسيات التعامل مع أنظمة التشغيل (Windows, Linux, iOS) وإعدادات حمايتها وشبكاتها."},
+      {"name":"IT Customer Support Basics","level":"مبتدئ","link":"https://www.netacad.com/courses/it-customer-support-basics?courseLang=en-US","desc":"بيجهزك لوظائف الـ Help Desk، وبيعلمك مهارات التواصل وحل المشاكل التقنية للعملاء عن بُعد."},
+      {"name":"Linux Essentials","level":"مبتدئ","link":"https://www.netacad.com/courses/linux-essentials?courseLang=en-US","desc":"اللينكس هو عصب الـ Cloud والـ Security. كورس عملي للتعامل مع الـ Command Line والـ Virtual Machines."}
+    ]},
+    {"id":"networking","name":"هندسة الشبكات (Networking)","icon":"🌐","courses":[
+      {"name":"Getting Started with Cisco Packet Tracer","level":"مبتدئ","link":"https://www.netacad.com/courses/getting-started-cisco-packet-tracer?courseLang=en-US","desc":"البداية السريعة لمعرفة واجهة البرنامج السحري وازاي تفتح المعامل وتتعامل معاها."},
+      {"name":"Networking Basics","level":"مبتدئ","link":"https://www.netacad.com/courses/networking-basics?courseLang=en-US","desc":"البداية الفكرية؛ بيعلمك يعني إيه شبكة، وازاي البيانات بتتحرك داخلها، والبروتوكولات الأساسية."},
+      {"name":"Exploring Networking with Cisco Packet Tracer","level":"مبتدئ","link":"https://www.netacad.com/courses/exploring-networking-cisco-packet-tracer?courseLang=en-US","desc":"كورس بيخليك تطبق اللي أخدته في أساسيات الشبكات بشكل عملي وتبني شبكتك الافتراضية الأولى وتجربها بنفسك."},
+      {"name":"Network Addressing and Basic Troubleshooting","level":"متوسط","link":"https://www.netacad.com/courses/network-addressing-and-basic-troubleshooting?courseLang=en-US","desc":"بيدخل بيك لعمق الـ IP Addressing وازاي تحسب الـ Subnets وحل مشاكل الاتصال."},
+      {"name":"Networking Devices and Initial Configuration","level":"متوسط","link":"https://www.netacad.com/courses/networking-devices-and-initial-configuration?courseLang=en-US","desc":"كورس عملي لعمل إعدادات (Configuration) لأجهزة سيسكو، وحساب شبكات صغيرة، وفهم الـ Cloud والـ Virtualization."},
+      {"name":"Network Support and Security","level":"متوسط","link":"https://www.netacad.com/courses/network-support-security?courseLang=en-US","desc":"بيعلمك كفني شبكات ازاي تدعم الأجهزة والمستخدمين عن بُعد وتحل المشاكل الأمنية بذكاء."},
+      {"name":"Exploring Internet of Things with Cisco Packet Tracer","level":"مبتدئ","link":"https://www.netacad.com/courses/exploring-iot-cisco-packet-tracer?courseLang=en-US","desc":"كورس بيربط الأجهزة الذكية بالذكاء الاصطناعي ومحاكاة إنترنت الأشياء والبيانات الضخمة داخل الباكت تريسر."}
+    ]},
+    {"id":"cybersecurity","name":"الأمن السيبراني (Cybersecurity)","icon":"🛡️","courses":[
+      {"name":"Introduction to Cybersecurity","level":"مبتدئ","link":"https://www.netacad.com/courses/introduction-to-cybersecurity?courseLang=en-US","desc":"مقدمة لعالم الأمن السيبراني وأهم التحديات اللي بتواجه الشركات والحكومات."},
+      {"name":"Endpoint Security","level":"متوسط","link":"https://www.netacad.com/courses/endpoint-security?courseLang=en-US","desc":"ازاي تحمي الشبكة من الأطراف (Hardware, Software) وتقييم الثغرات في أنظمة التشغيل."},
+      {"name":"Network Defense","level":"متوسط","link":"https://www.netacad.com/courses/network-defense?courseLang=en-US","desc":"كورس الحماية الدفاعية؛ مراقبة الشبكة، التعامل مع الجُدر النارية (Firewalls)، والـ Cryptography."},
+      {"name":"Cyber Threat Management","level":"متقدم","link":"https://www.netacad.com/courses/cyber-threat-management?courseLang=en-US","desc":"حوكمة الأمن السيبراني، إدارة المخاطر، والتعامل مع الحوادث الأمنية والـ Phishing."},
+      {"name":"Ethical Hacker","level":"متقدم","link":"https://www.netacad.com/courses/ethical-hacker?courseLang=en-US","desc":"قمة المسار (الأمن الهجومي)؛ تقمص دور الهكر الشرير لاكتشاف الثغرات واختبار الاختراق (Penetration Testing) وتقديم تقارير الحماية."}
+    ]},
+    {"id":"programming","name":"البرمجة وتطوير الويب","icon":"💻","courses":[
+      {"name":"HTML Essentials","level":"مبتدئ","link":"https://www.netacad.com/courses/html-essentials?courseLang=en-US","desc":"حجر الأساس لبناء وتصميم هيكل صفحات الويب من الصفر."},
+      {"name":"JavaScript Essentials 1","level":"مبتدئ","link":"https://www.netacad.com/courses/javascript-essentials-1?courseLang=en-US","desc":"الجزء الأول لتعلم اللغة التفاعلية للمواقع وتطبيقات الموبايل."},
+      {"name":"JavaScript Essentials 2","level":"متوسط","link":"https://www.netacad.com/courses/javascript-essentials-2?courseLang=en-US","desc":"الجزء التاني لتعلم اللغة التفاعلية للمواقع وتطبيقات الموبايل حتى مهارات الـ OOP الاحترافية."},
+      {"name":"Python Essentials 1","level":"مبتدئ","link":"https://www.netacad.com/courses/python-essentials-1?courseLang=en-US","desc":"اللغة الأقوى للذكاء الاصطناعي والسايبر سيكيورتي؛ الجزء الأول من كود مبتدئ."},
+      {"name":"Python Essentials 2","level":"متوسط","link":"https://www.netacad.com/courses/python-essentials-2?courseLang=en-US","desc":"اللغة الأقوى للذكاء الاصطناعي والسايبر سيكيورتي؛ الجزء التاني لبرمجة كائنية متقدمة (OOP)."},
+      {"name":"C++ Essentials 1","level":"مبتدئ","link":"https://www.netacad.com/courses/c-plus-plus-essentials-1?courseLang=en-US","desc":"لغة الأنظمة القوية؛ بيعلمك إدارة الذاكرة (Memory Management)، المتغيرات، الـ Pointers، والـ Loops."}
+    ]},
+    {"id":"data_ai","name":"علم البيانات والذكاء الاصطناعي","icon":"🤖","courses":[
+      {"name":"Introduction to Data Science","level":"مبتدئ","link":"https://www.netacad.com/courses/introduction-data-science?courseLang=en-US","desc":"دليلك لفهم الـ Data Analytics والـ Machine Learning وازاي البيانات بتغير العالم."},
+      {"name":"Data Analytics Essentials","level":"مبتدئ","link":"https://www.netacad.com/courses/data-analytics-essentials?courseLang=en-US","desc":"كورس قوي يخليك تستخدم Excel و SQL و Tableau لتحليل وعرض البيانات وعمل بورتفوليو قوي."},
+      {"name":"Data Science Essentials with Python","level":"متوسط","link":"https://www.netacad.com/courses/data-science-essentials-with-python?courseLang=en-US","desc":"تطبيق عملي باستخدام بايثون ومكتبات Pandas و Matplotlib لتنظيف البيانات وعمل رسومات بيانية."},
+      {"name":"AI Fundamentals: Foundations for Understanding AI","level":"مبتدئ","link":"https://www.netacad.com/courses/ibm-foundations-understanding-ai?courseLang=en-US","desc":"كورس من IBM لفهم الـ Deep Learning، الشبكات العصبية، الـ Generative AI وأخلاقيات الذكاء الاصطناعي."},
+      {"name":"Introduction to Modern AI","level":"مبتدئ","link":"https://www.netacad.com/courses/introduction-to-modern-ai?courseLang=en-US","desc":"كورس عملي لاستخدام الـ AI في حياتك اليومية، وكتابة برومبتس لأكتر من 10 أدوات شهيرة (ChatGPT, Gemini, Claude)."},
+      {"name":"Apply AI: Analyze Customer Reviews","level":"متوسط","link":"https://www.netacad.com/courses/apply-ai-analyze-customer-reviews?courseLang=en-US","desc":"كورس ذكي لتعليم كيفية استخدام الـ AI في تحليل آراء ومراجعات العملاء وتقديم توصيات للبيزنس."}
+    ]},
+    {"id":"english_it","name":"الإنجليزية المخصصة للـ IT","icon":"🗣️","courses":[
+      {"name":"English for IT: Describing and Comparing","level":"مبتدئ (Basics)","link":"https://www.netacad.com/courses/english-for-it-describing-and-comparing?courseLang=en-US","desc":"تعلم الـ Idioms والمصطلحات اللي بتخليك توصف وتقارن الأدوات التقنية في اجتماعاتك بثقة."},
+      {"name":"English for IT: Advice and Time","level":"مبتدئ (Basics)","link":"https://www.netacad.com/courses/english-advice-and-time?courseLang=en-US","desc":"مهارات تقديم نصائح تقنية للمستخدمين وشرح الحلول والمشكلات بأزمنة صحيحة."},
+      {"name":"English for IT: People and Quantities","level":"مبتدئ (Basics)","link":"https://www.netacad.com/courses/english-people-and-quantities?courseLang=en-US","desc":"الإنجليزية الخاصة بإدارة الموارد والفرق، والتواصل في مجتمعات الـ DevOps و الـ QA."},
+      {"name":"English for IT: Needs and Responsibilities","level":"مبتدئ (Basics)","link":"https://www.netacad.com/courses/english-for-it-needs-and-responsibilites?courseLang=en-US","desc":"شرح الخطط والمسؤوليات وأدوات الـ Agile وتقسيم المهام داخل السبرنت (Sprint)."},
+      {"name":"English for IT 1","level":"متوسط (B1)","link":"https://www.netacad.com/courses/english-for-it1?courseLang=en-US","desc":"نقلك الفعلي من مستوى (B1) لمستوى (B2) - الجزء الأول، وهو الحد الأدنى المطلوب للتوظيف والتعامل في أي شركة عالمية بكل طلاقة."},
+      {"name":"English for IT 2","level":"متقدم (B2)","link":"https://www.netacad.com/courses/english-for-it2?courseLang=en-US","desc":"نقلك الفعلي من مستوى (B1) لمستوى (B2) - الجزء التاني، وهو الحد الأدنى المطلوب للتوظيف والتعامل في أي شركة عالمية بكل طلاقة."}
+    ]}
+  ]
+};
+
+const nodesEl = document.getElementById('nodes');
+DATA.categories.forEach(cat=>{
+  const div = document.createElement('div');
+  div.className = 'node';
+  div.innerHTML = `
+    <span class="icon">${cat.icon}</span>
+    <span class="name">${cat.name}</span>
+    <span class="count">${cat.courses.length} كورس</span>
+  `;
+  div.addEventListener('click', ()=>openCategory(cat));
+  nodesEl.appendChild(div);
+});
+
+const overlay = document.getElementById('overlay');
+const listView = document.getElementById('listView');
+const detailView = document.getElementById('detailView');
+const courseList = document.getElementById('courseList');
+
+function openCategory(cat){
+  document.getElementById('catIcon').textContent = cat.icon + ' ';
+  document.getElementById('catName').textContent = cat.name;
+  document.getElementById('catCount').textContent = cat.courses.length + ' كورس متاح في هذا المجال';
+  courseList.innerHTML = '';
+  cat.courses.forEach(c=>{
+    const item = document.createElement('div');
+    item.className = 'course-item';
+    item.innerHTML = `<span class="cname">${c.name}</span><span class="level-badge">${c.level}</span>`;
+    item.addEventListener('click', ()=>openCourse(c));
+    courseList.appendChild(item);
+  });
+  listView.style.display='block';
+  detailView.classList.remove('active');
+  overlay.classList.add('active');
+}
+
+function openCourse(c){
+  document.getElementById('dName').textContent = c.name;
+  document.getElementById('dLevel').textContent = c.level;
+  document.getElementById('dDesc').textContent = c.desc;
+  document.getElementById('dLink').href = c.link;
+  listView.style.display='none';
+  detailView.classList.add('active');
+}
+
+document.getElementById('backBtn').addEventListener('click', ()=>{
+  detailView.classList.remove('active');
+  listView.style.display='block';
+});
+
+document.getElementById('closeBtn').addEventListener('click', closeOverlay);
+overlay.addEventListener('click', (e)=>{ if(e.target===overlay) closeOverlay(); });
+function closeOverlay(){ overlay.classList.remove('active'); }
+document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeOverlay(); });
+
+// Animated connected-dots network background
+(function(){
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const canvas = document.getElementById('netBg');
+  const ctx = canvas.getContext('2d');
+  let w, h, dots;
+
+  function resize(){
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+    const count = Math.min(70, Math.floor((w*h)/22000));
+    dots = Array.from({length: count}, ()=>({
+      x: Math.random()*w,
+      y: Math.random()*h,
+      vx: (Math.random()-0.5)*0.35,
+      vy: (Math.random()-0.5)*0.35
+    }));
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  function tick(){
+    ctx.clearRect(0,0,w,h);
+    for(const d of dots){
+      d.x += d.vx; d.y += d.vy;
+      if(d.x<0||d.x>w) d.vx*=-1;
+      if(d.y<0||d.y>h) d.vy*=-1;
+    }
+    for(let i=0;i<dots.length;i++){
+      for(let j=i+1;j<dots.length;j++){
+        const a=dots[i], b=dots[j];
+        const dx=a.x-b.x, dy=a.y-b.y;
+        const dist=Math.sqrt(dx*dx+dy*dy);
+        if(dist<140){
+          ctx.strokeStyle = `rgba(0,212,255,${0.20*(1-dist/140)})`;
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(a.x,a.y);
+          ctx.lineTo(b.x,b.y);
+          ctx.stroke();
+        }
+      }
+    }
+    for(const d of dots){
+      ctx.beginPath();
+      ctx.arc(d.x,d.y,2,0,Math.PI*2);
+      ctx.fillStyle = 'rgba(255,140,66,0.55)';
+      ctx.fill();
+    }
+    requestAnimationFrame(tick);
+  }
+  tick();
+})();
+</script>
+</body>
+</html>
