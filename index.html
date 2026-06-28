@@ -951,9 +951,13 @@ audioLaunch.setAttribute('playsinline', '');
 audioQuran.setAttribute('playsinline', '');
 audioMusic.setAttribute('playsinline', '');
 
-// iOS audio unlock
+// iOS detection
+const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
+// iOS audio unlock - صوت الصاروخ بس على iOS
 function unlockAudio() {
-  [audioLaunch, audioQuran, audioMusic].forEach(a => {
+  const toUnlock = isIOS ? [audioLaunch] : [audioLaunch, audioQuran, audioMusic];
+  toUnlock.forEach(a => {
     a.load();
     const p = a.play();
     if (p) p.then(() => a.pause()).catch(()=>{});
@@ -1111,11 +1115,14 @@ function launchTimeline(timestamp) {
     mainPage.style.opacity = '1';
 
     audioQuran.play().catch(e => console.log('Quran audio blocked:', e));
-    audioQuran.addEventListener('ended', () => {
-      setTimeout(() => {
-        audioMusic.play().catch(e => console.log('Music audio blocked:', e));
-      }, 10000); // تعديل الـ 10 ثواني السابق
-    });
+    if (!isIOS) {
+      audioQuran.play().catch(e => console.log('Quran audio blocked:', e));
+      audioQuran.addEventListener('ended', () => {
+        setTimeout(() => {
+          audioMusic.play().catch(e => console.log('Music audio blocked:', e));
+        }, 10000);
+      });
+    }
     return;
   }
 
