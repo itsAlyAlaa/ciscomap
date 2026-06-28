@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="description" content="خريطة كورسات Cisco المجانية - كورسات شبكات وسايبر سيكيورتي وبرمجة وذكاء اصطناعي معتمدة من Cisco NetAcad">
 <meta name="theme-color" content="#00d4ff">
 <title>Cisco Courses</title>
@@ -940,6 +940,22 @@ const audioLaunch = new Audio('RSE.mp3');
 const audioQuran = new Audio('quran.mp3');
 const audioMusic = new Audio('Music.mp3');
 audioMusic.loop = true;
+audioLaunch.setAttribute('playsinline', '');
+audioQuran.setAttribute('playsinline', '');
+audioMusic.setAttribute('playsinline', '');
+
+// iOS audio unlock
+function unlockAudio() {
+  [audioLaunch, audioQuran, audioMusic].forEach(a => {
+    a.load();
+    const p = a.play();
+    if (p) p.then(() => a.pause()).catch(()=>{});
+  });
+  document.removeEventListener('touchstart', unlockAudio);
+  document.removeEventListener('touchend', unlockAudio);
+}
+document.addEventListener('touchstart', unlockAudio, { once: true });
+document.addEventListener('touchend', unlockAudio, { once: true });
 
 // ----- محرك جزيئات اللهب والدخان والشرر أسفل الصاروخ -----
 let engineParticles = [];
@@ -1099,16 +1115,19 @@ function launchTimeline(timestamp) {
   requestAnimationFrame(launchTimeline);
 }
 
-startBtn.addEventListener('click', () => {
+function handleStart() {
   audioLaunch.play().catch(e => console.log('Launch audio blocked:', e));
 
   splashContent.style.opacity = '0';
-  setTimeout(() => { splashContent.style.display = 'none'; }, 200); // تسريع إخفاء النصوص أيضاً
+  setTimeout(() => { splashContent.style.display = 'none'; }, 200);
 
   rocketContainer.style.display = 'flex';
   launchSequenceActive = true;
   requestAnimationFrame(launchTimeline);
-});
+}
+
+startBtn.addEventListener('click', handleStart);
+startBtn.addEventListener('touchend', (e) => { e.preventDefault(); handleStart(); });
 
 // Splash canvas: network animation + rocket flame/smoke particles
 let sW, sH;
