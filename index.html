@@ -80,6 +80,9 @@
   .page{
     position:relative;
     z-index:1;
+    transform: translate3d(0, 12vh, 0);
+    opacity: 0;
+    will-change: transform, opacity;
   }
   .badges{
     display:flex;
@@ -461,6 +464,7 @@
 <body>
 
 <!-- ===== Splash Screen ===== -->
+<div id="flashOverlay"></div>
 <div id="splash">
   <canvas id="splashCanvas"></canvas>
   <div id="splashContent">
@@ -476,10 +480,52 @@
     </div>
     <h1 id="splashTitle">Cisco Courses Map</h1>
     <p id="splashSub">خريطة الكورسات المجانية المعتمدة</p>
-    <button id="startBtn">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
-      Start
-    </button>
+   <button id="startBtn">
+    Begin Your Journey
+</button>
+  </div>
+
+  <!-- صاروخ مصمم خصيصاً للهوية البصرية بألوان الموقع (سيان وبرتقالي) -->
+  <div id="rocketContainer">
+    <svg id="rocketSvg" width="64" height="150" viewBox="0 0 64 150" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="bodyGrad" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#cfe9f5"/>
+          <stop offset="50%" stop-color="#f3fbff"/>
+          <stop offset="100%" stop-color="#9fd3e8"/>
+        </linearGradient>
+        <linearGradient id="finGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#ff8c42"/>
+          <stop offset="100%" stop-color="#e3601f"/>
+        </linearGradient>
+        <radialGradient id="windowGrad" cx="35%" cy="30%" r="70%">
+          <stop offset="0%" stop-color="#bdf3ff"/>
+          <stop offset="60%" stop-color="#00d4ff"/>
+          <stop offset="100%" stop-color="#0089ad"/>
+        </radialGradient>
+      </defs>
+
+      <!-- الزعانف الجانبية -->
+      <path d="M18 92 L2 132 L20 122 Z" fill="url(#finGrad)"/>
+      <path d="M46 92 L62 132 L44 122 Z" fill="url(#finGrad)"/>
+
+      <!-- جسم الصاروخ -->
+      <path d="M32 4 C46 22 50 50 50 82 C50 96 44 104 32 106 C20 104 14 96 14 82 C14 50 18 22 32 4 Z" fill="url(#bodyGrad)" stroke="#7fb8cf" stroke-width="1"/>
+
+      <!-- نافذة الصاروخ -->
+      <circle cx="32" cy="48" r="11" fill="url(#windowGrad)" stroke="#075873" stroke-width="2"/>
+      <circle cx="28" cy="44" r="3" fill="#ffffff" opacity="0.55"/>
+
+      <!-- خط هوية سيسكو على الجسم -->
+      <rect x="22" y="68" width="2.4" height="14" fill="#00bceb"/>
+      <rect x="26.8" y="64" width="2.4" height="18" fill="#00bceb"/>
+      <rect x="31.6" y="60" width="2.4" height="22" fill="#00bceb"/>
+      <rect x="36.4" y="64" width="2.4" height="18" fill="#00bceb"/>
+      <rect x="41.2" y="68" width="2.4" height="14" fill="#00bceb"/>
+
+      <!-- قاعدة المحرك -->
+      <rect x="24" y="100" width="16" height="10" rx="2" fill="#5b4a42"/>
+    </svg>
   </div>
 </div>
 
@@ -493,7 +539,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    transition: opacity .8s ease, visibility .8s ease;
+    will-change: transform, opacity;
   }
   #splash.hide {
     opacity: 0;
@@ -572,12 +618,43 @@
     0%,100% { box-shadow: 0 0 0px rgba(0,212,255,0); }
     50%     { box-shadow: 0 0 22px rgba(0,212,255,0.45); }
   }
-</style>
 
+  /* ===== الصاروخ السينمائي ===== */
+  #rocketContainer {
+    position: absolute;
+    bottom: -230px;
+    left: 50%;
+    transform: translate3d(-50%, 0, 0) rotate(0deg);
+    transform-origin: 50% 85%;
+    z-index: 5;
+    display: none;
+    will-change: transform;
+  }
+  #rocketSvg {
+    display: block;
+    filter: drop-shadow(0 8px 16px rgba(255,140,66,.4));
+  }
+  .motion-blur {
+    filter: blur(3px) drop-shadow(0 8px 16px rgba(255,140,66,.4));
+  }
+  #flashOverlay {
+    position: fixed;
+    inset: 0;
+    background: #ffffff;
+    z-index: 10000;
+    opacity: 0;
+    pointer-events: none;
+    will-change: opacity;
+  }
+  @media (max-width: 480px) {
+    #rocketContainer svg { width: 50px; height: 117px; }
+  }
+
+</style>
 <canvas id="netBg"></canvas>
 <div class="grid-overlay"></div>
 
-<div class="page">
+<div class="page" id="mainPage">
 
 <div class="badges">
   <span class="badge cisco">
@@ -850,46 +927,228 @@ document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeOverlay();
   tick();
 })();
 
-// ===== Splash Screen + Music =====
+// ===== Splash Screen + Launch Engine + Audio Timeline =====
 const splash = document.getElementById('splash');
+const splashContent = document.getElementById('splashContent');
 const startBtn = document.getElementById('startBtn');
-const bgMusic = document.createElement('audio');
-bgMusic.loop = true;
-bgMusic.volume = 1;
-bgMusic.src = 'Music.mp3';
+const rocketContainer = document.getElementById('rocketContainer');
+const rocketSvg = document.getElementById('rocketSvg');
+const flashOverlay = document.getElementById('flashOverlay');
+const mainPage = document.getElementById('mainPage');
+
+// ملفات الصوت بالأسماء الصحيحة بحروف صغيرة (GitHub Pages حساس لحالة الأحرف)
+const audioLaunch = new Audio('RSE.mp3');
+const audioQuran = new Audio('quran.mp3');
+const audioMusic = new Audio('music.mp3');
+audioMusic.loop = true;
+
+// ----- محرك جزيئات اللهب والدخان والشرر أسفل الصاروخ -----
+let engineParticles = [];
+let launchSequenceActive = false;
+let engineThrust = 0;
+
+class LaunchParticle {
+  constructor(x, y, type) {
+    this.x = x + (Math.random() - 0.5) * 18;
+    this.y = y;
+    this.type = type;
+    this.vx = (Math.random() - 0.5) * 2.4;
+    if (type === 'spark') {
+      this.vy = Math.random() * 4 + 2;
+      this.life = Math.random() * 35 + 25;
+      this.size = Math.random() * 2 + 1;
+    } else if (type === 'smoke') {
+      this.vy = Math.random() * 2.6 + 0.8;
+      this.life = Math.random() * 55 + 45;
+      this.size = Math.random() * 13 + 9;
+    } else { // flame
+      this.vy = Math.random() * 4.5 + 3.5;
+      this.life = Math.random() * 22 + 14;
+      this.size = Math.random() * 7 + 4;
+    }
+    this.maxLife = this.life;
+  }
+  update() {
+    this.x += this.vx;
+    this.y += this.vy;
+    this.life--;
+    if (this.type === 'smoke') {
+      this.size += 0.35;
+      this.vx += (Math.random() - 0.5) * 0.15;
+    }
+  }
+  draw(ctx) {
+    const alpha = this.life / this.maxLife;
+    ctx.beginPath();
+    if (this.type === 'flame') {
+      ctx.fillStyle = `rgba(255,140,66,${alpha * 0.85})`;
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    } else if (this.type === 'flameCore') {
+      ctx.fillStyle = `rgba(255,255,255,${alpha})`;
+      ctx.arc(this.x, this.y, this.size * 0.5, 0, Math.PI * 2);
+    } else if (this.type === 'smoke') {
+      ctx.fillStyle = `rgba(130,140,150,${alpha * 0.22})`;
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    } else if (this.type === 'spark') {
+      ctx.fillStyle = `rgba(255,212,90,${alpha})`;
+      ctx.fillRect(this.x, this.y, this.size, this.size);
+    }
+    ctx.fill();
+  }
+}
+
+function updateLaunchParticles(ctx, sRect) {
+  if (!launchSequenceActive) return;
+  const rRect = rocketSvg.getBoundingClientRect();
+  const rX = (rRect.left + rRect.width / 2) - sRect.left;
+  const rY = (rRect.top + rRect.height * 0.74) - sRect.top;
+
+  if (engineThrust > 0) {
+    const n = Math.floor(engineThrust * 2.2);
+    for (let i = 0; i < n; i++) {
+      engineParticles.push(new LaunchParticle(rX, rY, 'flame'));
+    }
+    if (Math.random() < 0.6) engineParticles.push(new LaunchParticle(rX, rY, 'flameCore'));
+    if (Math.random() < 0.55) engineParticles.push(new LaunchParticle(rX, rY, 'smoke'));
+    if (Math.random() < 0.5) engineParticles.push(new LaunchParticle(rX, rY, 'spark'));
+  }
+
+  for (let i = engineParticles.length - 1; i >= 0; i--) {
+    const p = engineParticles[i];
+    p.update();
+    p.draw(ctx);
+    if (p.life <= 0) engineParticles.splice(i, 1);
+  }
+}
+
+// ----- الترتيب الزمني الكامل للإقلاع (Timeline) باستخدام requestAnimationFrame -----
+let startTime = 0;
+let rocketY = 0;
+let rocketTilt = 0;
+let splashY = 0;
+let pageY = 12;
+let flashFired = false;
+
+function translateEaseOut(t) { return --t * t * t + 1; }
+
+function launchTimeline(timestamp) {
+  if (!startTime) startTime = timestamp;
+  const elapsed = timestamp - startTime;
+
+  // المرحلة 1: الصاروخ يظهر من أسفل الشاشة مع اهتزاز خفيف لتسخين المحرك (0 - 1400ms)
+  if (elapsed < 1400) {
+    const progress = elapsed / 1400;
+    rocketY = -250 * translateEaseOut(progress);
+    rocketTilt = 0;
+    engineThrust = progress * 1.3;
+
+    const shakeX = (Math.random() - 0.5) * 4 * progress;
+    const shakeY = (Math.random() - 0.5) * 4 * progress;
+
+    rocketContainer.style.transform = `translate3d(calc(-50% + ${shakeX}px), ${rocketY + shakeY}px, 0) rotate(${rocketTilt}deg)`;
+    splash.style.transform = `translate3d(${shakeX * 0.5}px, ${shakeY * 0.5}px, 0)`;
+  }
+
+  // المرحلة 2: لحظة الانطلاق الفعلي — وميض أبيض خاطف وميل الصاروخ (1400 - 1600ms)
+  else if (elapsed >= 1400 && elapsed < 1600) {
+    if (!flashFired) { flashFired = true; }
+    const fadeT = (elapsed - 1400) / 200;
+    flashOverlay.style.opacity = String(0.85 * (1 - fadeT));
+
+    engineThrust = 3;
+    rocketContainer.classList.add('motion-blur');
+    rocketTilt = -10 * fadeT;
+    rocketContainer.style.transform = `translate3d(-50%, ${rocketY}px, 0) rotate(${rocketTilt}deg)`;
+  }
+
+  // المرحلة 3: الصعود السريع حاملاً شاشة الـ Splash بالكامل للأعلى (1600 - 2300ms)
+  else if (elapsed >= 1600 && elapsed < 2300) {
+    flashOverlay.style.opacity = '0';
+    engineThrust = 3;
+
+    const flyProgress = (elapsed - 1600) / 700;
+    const flyEase = Math.pow(flyProgress, 3);
+
+    rocketY = -250 - (sH * 1.3 * flyEase);
+    rocketTilt = -10 + (4 * flyEase);
+    splashY = -(sH * flyEase);
+    pageY = 12 * (1 - flyEase);
+
+    rocketContainer.style.transform = `translate3d(-50%, ${rocketY}px, 0) rotate(${rocketTilt}deg)`;
+    splash.style.transform = `translate3d(0, ${splashY}px, 0)`;
+    splash.style.opacity = String(1 - flyEase);
+
+    mainPage.style.transform = `translate3d(0, ${pageY}vh, 0)`;
+    mainPage.style.opacity = String(flyEase);
+  }
+
+  // المرحلة 4: إنهاء المشهد وتثبيت الصفحة الرئيسية وبدء الخط الزمني الصوتي
+  else {
+    launchSequenceActive = false;
+    splash.style.display = 'none';
+    flashOverlay.style.display = 'none';
+    rocketContainer.classList.remove('motion-blur');
+
+    mainPage.style.transform = 'translate3d(0, 0, 0)';
+    mainPage.style.opacity = '1';
+
+    audioQuran.play().catch(e => console.log('Quran audio blocked:', e));
+    audioQuran.addEventListener('ended', () => {
+      setTimeout(() => {
+        audioMusic.play().catch(e => console.log('Music audio blocked:', e));
+      }, 20000);
+    });
+    return;
+  }
+
+  requestAnimationFrame(launchTimeline);
+}
 
 startBtn.addEventListener('click', () => {
-  bgMusic.play();
-  splash.classList.add('hide');
-  setTimeout(() => splash.remove(), 900);
+  audioLaunch.play().catch(e => console.log('Launch audio blocked:', e));
+
+  splashContent.style.opacity = '0';
+  setTimeout(() => { splashContent.style.display = 'none'; }, 300);
+
+  rocketContainer.style.display = 'flex';
+  launchSequenceActive = true;
+  requestAnimationFrame(launchTimeline);
 });
 
-// Splash canvas network animation
+// Splash canvas: network animation + rocket flame/smoke particles
+let sW, sH;
 (function(){
   const canvas = document.getElementById('splashCanvas');
   const ctx = canvas.getContext('2d');
-  let w, h, dots;
+  let dots;
   function resize(){
-    w = canvas.width = window.innerWidth;
-    h = canvas.height = window.innerHeight;
+    sW = canvas.width = window.innerWidth;
+    sH = canvas.height = window.innerHeight;
     dots = Array.from({length: 50}, ()=>({
-      x: Math.random()*w, y: Math.random()*h,
+      x: Math.random()*sW, y: Math.random()*sH,
       vx: (Math.random()-.5)*.4, vy: (Math.random()-.5)*.4
     }));
   }
   window.addEventListener('resize', resize);
   resize();
   function tick(){
-    ctx.clearRect(0,0,w,h);
-    for(const d of dots){ d.x+=d.vx; d.y+=d.vy; if(d.x<0||d.x>w)d.vx*=-1; if(d.y<0||d.y>h)d.vy*=-1; }
+    ctx.clearRect(0,0,sW,sH);
+    for(const d of dots){ d.x+=d.vx; d.y+=d.vy; if(d.x<0||d.x>sW)d.vx*=-1; if(d.y<0||d.y>sH)d.vy*=-1; }
     for(let i=0;i<dots.length;i++) for(let j=i+1;j<dots.length;j++){
       const dx=dots[i].x-dots[j].x, dy=dots[i].y-dots[j].y, dist=Math.sqrt(dx*dx+dy*dy);
       if(dist<130){ ctx.strokeStyle=`rgba(0,212,255,${0.18*(1-dist/130)})`; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(dots[i].x,dots[i].y); ctx.lineTo(dots[j].x,dots[j].y); ctx.stroke(); }
     }
     for(const d of dots){ ctx.beginPath(); ctx.arc(d.x,d.y,2,0,Math.PI*2); ctx.fillStyle='rgba(255,140,66,0.5)'; ctx.fill(); }
+
+    // رسم جزيئات اللهب والدخان الخاصة بالصاروخ فوق شبكة النقاط
+    if (typeof updateLaunchParticles === 'function') {
+      updateLaunchParticles(ctx, canvas.getBoundingClientRect());
+    }
+
     requestAnimationFrame(tick);
   }
   tick();
+
 })();
 </script>
 </body>
